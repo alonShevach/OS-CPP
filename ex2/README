@@ -1,0 +1,42 @@
+alen.viner, alon.shevach
+Alen Viner (203637822), Alon Shevach (205954209)
+
+1.	Threads are used to perform more than one task at a time by a single process. For example,
+ processing multiple requests at a time by a web server. Using threads is a reasonable choice since we do not want
+  request to delay one another and make some requests "wait in line" while we answer another – we want every request to
+  be answered as soon as possible. That also helps us deal with unstable and unpredictable amount of request and share
+  our resources dynamicly.
+
+2.	Advantages of creating a new process for each tab:
+-	The processes are protected from each other and do not share the same address space. That means that one tab cannot
+    override or corrupt in some way the memory used by another tab.
+disadvantages of creating a new process for each tab:
+-	It is slower to create and to terminate a new process than to create or to terminate a new kernel thread.
+-	There is more overhead to switching between processes than switching between kernel threads.
+-	Processes require the operating system to communicate. Communication between kernel threads can be done more
+    efficently.
+
+3.  opening the shell creates a new process by the os, so this means a system call is being sent.
+    When typing the commands, a keyboard sends interrupts to the OS, whichhandles these interrupts with handlers,
+    sends the command to the output stream which ends up as output in the monitor.
+    After sending the command, the shell sends a system call to the OS for it to look for a program with name
+    ps and parameters -A, the program then uses system call, from OS the information
+    about the processes which are currently active. Then this information is flushed to the output
+    stream.
+    The kill pid command, sends a kill() system call to OS, OS handles that and sends a signal
+    (SIGTERM) the cpu's signal handler will catch it and will preform a "cleanup" before shutting
+    the process down, this process then terminates.
+
+
+4:  The difference between 'virtual' and 'real' time is that 'real' time is measuring all the time a thread
+    is using the CPU, while 'virtual' time doesn't measure the overhead time.
+    The overhead time is the time when a thread isn't doing its purpose, like context switching,
+    spending time in system calls and more.
+
+    usage for real time: when we want to measure the total time it takes for the process to run, we will use real time.
+    for instance if we have limited time for running some process in the future, we will use the real time to
+    measure how much time we will need, because the virtual time wont give us the right amount.
+    usage for virtual time: if we would like to measure the actual running time of a process or to compare the
+    running time of two different processes we will use virtual time, the real time wont help us alot in this case.
+
+

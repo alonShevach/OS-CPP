@@ -1,0 +1,64 @@
+alen.viner, alon.shevach
+Alen Viner (203637822), Alon Shevach (205954209)
+
+Evaluation - FileWordCounter:
+the results showed that few threads(like 2) are very slow, and this is not surprising when we use 2 threads we dont
+have parallel mapping which should slow the project.
+we could see that the more threads we use the faster it gets until we reach a runtime around 11-12 seconds,
+which is the thread saturation point.
+we could see the biggest difference between 2 threads and 5 threads, because of the lack of parallel mapping,
+it took 66:15 seconds to run on 2 threads while on 5 threads it took 18:43 seconds.
+
+
+We used the school's computer:
+Architecture:        x86_64
+CPU op-mode(s):      32-bit, 64-bit
+Byte Order:          Little Endian
+Address sizes:       46 bits physical, 48 bits virtual
+CPU(s):              16
+On-line CPU(s) list: 0-15
+Thread(s) per core:  2
+Core(s) per socket:  4
+Socket(s):           2
+NUMA node(s):        2
+Vendor ID:           GenuineIntel
+CPU family:          6
+Model:               45
+Model name:          Intel(R) Xeon(R) CPU E5-2643 0 @ 3.30GHz
+Stepping:            7
+CPU MHz:             3400.002
+CPU max MHz:         3500.0000
+CPU min MHz:         1200.0000
+BogoMIPS:            6599.78
+Virtualization:      VT-x
+L1d cache:           32K
+L1i cache:           32K
+L2 cache:            256K
+L3 cache:            10240K
+NUMA node0 CPU(s):   0-3,8-11
+NUMA node1 CPU(s):   4-7,12-15
+Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr
+sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology
+nonstop_tsccpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1
+sse4_2 x2apic popcnttsc_deadline_timer aes xsave avx lahf_lm pti tpr_shadow vnmi flexpriority ept vpid xsaveopt dtherm
+ ida arat pln pts
+
+
+Part 2: Theoretical Questions:
+
+1. If foo is CPU-bound, the optimal number of kernel-level threads for foo is 1, since foo doesn't wait fo I\O so it
+   can't use the power of more threads to run operations "parallel" to waiting for the I\O from the user,
+   and using more kernel threads than one causes more overhead, since the kernel needs to change registers values and do
+   other actions when switching threads. However, when working with n-core machines, we can use n kernel-level threads to
+   do multiple calculations in parallel and save time. So when working on n-core machine the answer would be n.
+
+2.
+  a. 2n lines will be printed: First, n threads are created. for every thread, after the fork, we will have 2 threads.
+  The parent will wait for the child to end, the child will print a line (we have n children), then the parent will go
+  into a barrier. After the last fork, n threads will be in the barrier, so it will open, and all the parent threads
+  will print the line as well. So 2n lines will be printed overall.
+
+  b. All the children threads will print the line before any of the parent threads will, and we have n! options for
+  the printing order of the children. Then all the parents will print and we have another n! options for that.
+  So we have n!*n! order options.
+

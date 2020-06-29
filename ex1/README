@@ -1,0 +1,23 @@
+alen.viner, alon.shevach
+Alen Viner (203637822), Alon Shevach (205954209)
+EX: 1
+
+FILES:
+README - this file
+Makefile - a makefile for the project
+osm.cpp = an implementation of the osm library functions
+graph.png - a graph representation of the diffferent runtimes of osm in different environments
+
+REMARKS:
+The runtimes graph is in logarithmic scale
+
+ANSWERS:
+
+Assignment 1:
+The program WhatIDo creates a new folder called "Welcome", creates inside it another folder called
+"TO", and then opens in it the file "OS2020" with the flags "O_WRONLY" (write only), "O_CREAT"
+(create the file if it doesn't exist) and "O_TRUNC" (if the file does exists and can be writen on,
+it will be truncated to length 0). It then checks if the file was created successfully, and writes
+a message on it. The program then closes the file and deletes it, the folder "To" and the folder
+"Welcome" and exits.
+
