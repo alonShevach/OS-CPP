@@ -1,5 +1,3 @@
-alen.viner, alon.shevach
-Alen Viner (203637822), Alon Shevach (205954209)
 
 1.	Threads are used to perform more than one task at a time by a single process. For example,
  processing multiple requests at a time by a web server. Using threads is a reasonable choice since we do not want
