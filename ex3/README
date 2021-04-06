@@ -1,5 +1,3 @@
-alen.viner, alon.shevach
-Alen Viner (203637822), Alon Shevach (205954209)
 
 Evaluation - FileWordCounter:
 the results showed that few threads(like 2) are very slow, and this is not surprising when we use 2 threads we dont
